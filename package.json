@@ -1,18 +1,28 @@
-
 {
   "name": "react-native-barcode",
   "version": "0.0.1",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonsikin/react-native-barcode.git"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ./"
   },
   "keywords": [
     "react-native"
   ],
   "author": "WonSikin <fnghwsj@gmail.com>",
-  "license": "",
   "peerDependencies": {
-    "react-native": "0.38.1"
+    "react-native": "0.38.1",
+    "react": ">=15.4.0",
+    "react-native-svg": "^4.4.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^2.13.1",
+    "eslint-plugin-react": "^6.8.0"
   }
 }
