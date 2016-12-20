@@ -1,0 +1,5 @@
+import {CODE128, CODE128A, CODE128B, CODE128C} from './CODE128/';
+
+export default {
+	CODE128, CODE128A, CODE128B, CODE128C,
+};
