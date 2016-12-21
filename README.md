@@ -1,43 +1,29 @@
 
 # react-native-barcode-builder
 
+A component for react native to generate barcode. Inspired by [JsBarcode](https://github.com/lindell/JsBarcode), depend on [react-native-svg](https://github.com/react-native-community/react-native-svg)。
+
 ## Getting started
 
-`$ npm install react-native-barcode-builder --save`
+#### Step 1
 
-### Mostly automatic installation
+Install react-native-svg
 
-`$ react-native link react-native-barcode-builder`
+`npm install react-native-svg --save && react-native link react-native-svg`
 
-### Manual installation
+#### Step 2
+Install react-native-barcode-builder
+
+`npm install react-native-barcode-builder --save`
 
 
-#### iOS
+#### Step 3
+Start using the component
 
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-barcode-builder` and add `RNBarcode.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNBarcode.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNBarcodePackage;` to the imports at the top of the file
-  - Add `new RNBarcodePackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-barcode-builder'
-  	project(':react-native-barcode-builder').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-barcode-builder/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-barcode-builder')
-  	```
-
-## Usage
 ```javascript
-import RNBarcode from 'react-native-barcode-builder';
+import Barcode from 'react-native-barcode-builder';
 
-// TODO: What do with the module?
-RNBarcode;
+<Barcode value="Hello World" />
 ```
+
+![](./images/example.png)
