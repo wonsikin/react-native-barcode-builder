@@ -1,6 +1,6 @@
 {
   "name": "react-native-barcode-builder",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -16,8 +16,6 @@
   ],
   "author": "WonSikin <fnghwsj@gmail.com>",
   "peerDependencies": {
-    "react-native": "0.38.1",
-    "react": ">=15.4.0",
     "react-native-svg": "^4.4.1"
   },
   "devDependencies": {

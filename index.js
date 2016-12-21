@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import Svg, {Rect} from 'react-native-svg';
 import barcodes from './barcodes/';
 
-export default class RNBarcode extends PureComponent {
+export default class Barcode extends PureComponent {
   static propTypes = {
     /* what the barCode stands for */
     value: PropTypes.string,
