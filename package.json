@@ -1,10 +1,10 @@
 {
-  "name": "react-native-barcode",
+  "name": "react-native-barcode-builder",
   "version": "0.0.1",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wonsikin/react-native-barcode.git"
+    "url": "https://github.com/wonsikin/react-native-barcode-builder.git"
   },
   "license": "MIT",
   "main": "index.js",
