@@ -9,7 +9,17 @@ export default class Barcode extends PureComponent {
     /* what the barCode stands for */
     value: PropTypes.string,
     /* Select which barcode type to use */
-    format: PropTypes.string,
+    format: PropTypes.oneOf([
+      'codabar',
+      'CODE39',
+      'CODE128', 'CODE128A', 'CODE128B', 'CODE128C', // Note: Using 'CODE128' will automatically detect which subtype you need and use it.
+      'EAN2', 'EAN5', 'EAN8', 'EAN13',
+      'UPC',
+      'GenericBarcode',
+      'ITF', 'ITF14',
+      'MSI', 'MSI10', 'MSI11', 'MSI1010', 'MSI1110', // Note: Using 'MSI' will automatically detect which subtype you need and use it.
+      'pharmacode'
+    ]),
     /* Overide the text that is diplayed */
     text: PropTypes.string,
     /* The width option is the width of a single bar. */
@@ -109,10 +119,8 @@ export default class Barcode extends PureComponent {
     var encoder = new Encoder(text, options);
 
     // If the input is not valid for the encoder, throw error.
-    // If the valid callback option is set, call it instead of throwing error
     if (!encoder.valid()) {
-      // throw new InvalidInputException(encoder.constructor.name, text);
-      throw new Error('valid barcode');
+      throw new Error('Invalid barcode for selected format.');
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
