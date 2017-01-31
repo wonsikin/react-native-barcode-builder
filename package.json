@@ -12,7 +12,8 @@
     "lint": "eslint ./"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "barcode"
   ],
   "author": "WonSikin <fnghwsj@gmail.com>",
   "peerDependencies": {
