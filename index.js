@@ -29,7 +29,9 @@ export default class Barcode extends PureComponent {
     /* Set the color of the bars and the text. */
     lineColor: PropTypes.string,
     /* Set the background of the barcode. */
-    background: PropTypes.string
+    background: PropTypes.string,
+    /* Handle error for invalid barcode of selected format */
+    onError: PropTypes.func
   };
 
   static defaultProps = {
@@ -39,7 +41,8 @@ export default class Barcode extends PureComponent {
     width: 2,
     height: 100,
     lineColor: '#000000',
-    background: '#ffffff'
+    background: '#ffffff',
+    onError: undefined
   };
 
   constructor(props) {
@@ -67,8 +70,11 @@ export default class Barcode extends PureComponent {
   update() {
     const encoder = barcodes[this.props.format];
     const encoded = this.encode(this.props.value, encoder, this.props);
-    this.state.bars = this.drawSvgBarCode(encoded, this.props);
-    this.state.barCodeWidth = encoded.data.length * this.props.width;
+
+    if (encoded) {
+      this.state.bars = this.drawSvgBarCode(encoded, this.props);
+      this.state.barCodeWidth = encoded.data.length * this.props.width;
+    }
   }
 
   drawSvgBarCode(encoding, options = {}) {
@@ -120,7 +126,14 @@ export default class Barcode extends PureComponent {
 
     // If the input is not valid for the encoder, throw error.
     if (!encoder.valid()) {
-      throw new Error('Invalid barcode for selected format.');
+      
+      if (this.props.onError) {
+        this.props.onError(new Error('Invalid barcode for selected format.'));
+        return
+      } else {
+        throw new Error('Invalid barcode for selected format.')
+      } 
+      
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
