@@ -106,7 +106,7 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    return (<Rect key={`${x}${y}${width}${height}`} x={x} y={y} width={width} height={height} fill="black"/>);
+    return (<Rect key={`${x}${y}${width}${height}`} x={x} y={y} width={width} height={height} fill=this.props.lineColor/>);
   }
 
   getTotalWidthOfEncodings(encodings) {
