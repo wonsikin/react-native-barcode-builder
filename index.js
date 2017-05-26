@@ -1,8 +1,12 @@
 import React, {PropTypes, PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ART} from 'react-native';
 
-import Svg, {Rect} from 'react-native-svg';
 import barcodes from './barcodes/';
+
+const {
+  Surface,
+  Shape,
+} = ART;
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -106,7 +110,8 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    return (<Rect key={`${x}${y}${width}${height}`} x={x} y={y} width={width} height={height} fill="black"/>);
+    const path = `M${x},${y}h${width}v${height}h-${width}z`;
+    return <Shape d={path} key={path} fill="black" />;
   }
 
   getTotalWidthOfEncodings(encodings) {
@@ -132,7 +137,7 @@ export default class Barcode extends PureComponent {
         return
       } else {
         throw new Error('Invalid barcode for selected format.')
-      } 
+      }
       
     }
 
@@ -150,9 +155,9 @@ export default class Barcode extends PureComponent {
     this.update();
     return (
       <View style={styles.svgContainer}>
-        <Svg height={this.props.height} width={this.state.barCodeWidth}>
+        <Surface height={this.props.height} width={this.state.barCodeWidth}>
           {this.state.bars}
-        </Svg>
+        </Surface>
       </View>
     );
   }
