@@ -7,15 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "15.4.1",
-    "react-native": "0.39.2",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.2",
     "react-native-barcode-builder": "file:../"
   },
   "devDependencies": {
-    "babel-jest": "18.0.0",
-    "babel-preset-react-native": "1.9.1",
-    "jest": "18.0.0",
-    "react-test-renderer": "15.4.1"
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "1.9.2",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.6"
   },
   "jest": {
     "preset": "react-native"
