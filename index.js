@@ -1,7 +1,7 @@
 import React, {PropTypes, PureComponent} from 'react';
 import {View, StyleSheet, ART} from 'react-native';
 
-import barcodes from './barcodes/';
+import barcodes from 'jsbarcode/src/barcodes';
 
 const {
   Surface,
@@ -13,17 +13,7 @@ export default class Barcode extends PureComponent {
     /* what the barCode stands for */
     value: PropTypes.string,
     /* Select which barcode type to use */
-    format: PropTypes.oneOf([
-      'codabar',
-      'CODE39',
-      'CODE128', 'CODE128A', 'CODE128B', 'CODE128C', // Note: Using 'CODE128' will automatically detect which subtype you need and use it.
-      'EAN2', 'EAN5', 'EAN8', 'EAN13',
-      'UPC',
-      'GenericBarcode',
-      'ITF', 'ITF14',
-      'MSI', 'MSI10', 'MSI11', 'MSI1010', 'MSI1110', // Note: Using 'MSI' will automatically detect which subtype you need and use it.
-      'pharmacode'
-    ]),
+    format: PropTypes.oneOf(Object.keys(barcodes)),
     /* Overide the text that is diplayed */
     text: PropTypes.string,
     /* The width option is the width of a single bar. */
