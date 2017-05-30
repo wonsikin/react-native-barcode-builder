@@ -110,8 +110,7 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    const path = `M${x},${y}h${width}v${height}h-${width}z`;
-    return <Shape d={path} key={path} fill="black" />;
+    return `M${x},${y}h${width}v${height}h-${width}z`;
   }
 
   getTotalWidthOfEncodings(encodings) {
@@ -156,7 +155,7 @@ export default class Barcode extends PureComponent {
     return (
       <View style={styles.svgContainer}>
         <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          {this.state.bars}
+          <Shape d={this.state.bars} fill="black" />
         </Surface>
       </View>
     );
