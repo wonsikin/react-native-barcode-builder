@@ -120,14 +120,14 @@ export default class Barcode extends PureComponent {
 
     // If the input is not valid for the encoder, throw error.
     if (!encoder.valid()) {
-      
+
       if (this.props.onError) {
         this.props.onError(new Error('Invalid barcode for selected format.'));
         return
       } else {
         throw new Error('Invalid barcode for selected format.')
       }
-      
+
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
@@ -142,10 +142,13 @@ export default class Barcode extends PureComponent {
 
   render() {
     this.update();
+    const backgroundStyle = {
+      backgroundColor: this.props.background,
+    };
     return (
-      <View style={styles.svgContainer}>
+      <View style={[styles.svgContainer, backgroundStyle]}>
         <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          <Shape d={this.state.bars} fill="black" />
+          <Shape d={this.state.bars} fill={this.props.lineColor} />
         </Surface>
       </View>
     );
@@ -154,6 +157,7 @@ export default class Barcode extends PureComponent {
 
 const styles = StyleSheet.create({
   svgContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 10,
   }
 });
