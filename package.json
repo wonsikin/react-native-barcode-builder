@@ -16,12 +16,12 @@
     "barcode"
   ],
   "author": "WonSikin <fnghwsj@gmail.com>",
-  "peerDependencies": {
-    "react-native-svg": "^4.4.1"
-  },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^6.8.0"
+  },
+  "dependencies": {
+    "jsbarcode": "^3.8.0"
   }
 }

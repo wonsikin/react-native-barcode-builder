@@ -1,25 +1,19 @@
 import React, {PropTypes, PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ART} from 'react-native';
 
-import Svg, {Rect} from 'react-native-svg';
-import barcodes from './barcodes/';
+import barcodes from 'jsbarcode/src/barcodes';
+
+const {
+  Surface,
+  Shape,
+} = ART;
 
 export default class Barcode extends PureComponent {
   static propTypes = {
     /* what the barCode stands for */
     value: PropTypes.string,
     /* Select which barcode type to use */
-    format: PropTypes.oneOf([
-      'codabar',
-      'CODE39',
-      'CODE128', 'CODE128A', 'CODE128B', 'CODE128C', // Note: Using 'CODE128' will automatically detect which subtype you need and use it.
-      'EAN2', 'EAN5', 'EAN8', 'EAN13',
-      'UPC',
-      'GenericBarcode',
-      'ITF', 'ITF14',
-      'MSI', 'MSI10', 'MSI11', 'MSI1010', 'MSI1110', // Note: Using 'MSI' will automatically detect which subtype you need and use it.
-      'pharmacode'
-    ]),
+    format: PropTypes.oneOf(Object.keys(barcodes)),
     /* Overide the text that is diplayed */
     text: PropTypes.string,
     /* The width option is the width of a single bar. */
@@ -106,7 +100,7 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    return (<Rect key={`${x}${y}${width}${height}`} x={x} y={y} width={width} height={height} fill="black"/>);
+    return `M${x},${y}h${width}v${height}h-${width}z`;
   }
 
   getTotalWidthOfEncodings(encodings) {
@@ -132,7 +126,7 @@ export default class Barcode extends PureComponent {
         return
       } else {
         throw new Error('Invalid barcode for selected format.')
-      } 
+      }
       
     }
 
@@ -150,9 +144,9 @@ export default class Barcode extends PureComponent {
     this.update();
     return (
       <View style={styles.svgContainer}>
-        <Svg height={this.props.height} width={this.state.barCodeWidth}>
-          {this.state.bars}
-        </Svg>
+        <Surface height={this.props.height} width={this.state.barCodeWidth}>
+          <Shape d={this.state.bars} fill="black" />
+        </Surface>
       </View>
     );
   }
