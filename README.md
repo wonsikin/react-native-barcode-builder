@@ -62,16 +62,16 @@ format: PropTypes.oneOf([
     <td>Which barcode type to use (default: CODE128).</td>
   </tr>
   <tr>
-    <td><code>text</code></td>
-    <td>Override text that is displayed.</td>
-  </tr>
-  <tr>
     <td><code>width</code></td>
     <td>Width of a single bar (default: 2)</td>
   </tr>
   <tr>
     <td><code>height</code></td>
     <td>Height of the barcode (default: 100)</td>
+  </tr>
+  <tr>
+    <td><code>text</code></td>
+    <td>Override text that is displayed.</td>
   </tr>
   <tr>
     <td><code>lineColor</code></td>
