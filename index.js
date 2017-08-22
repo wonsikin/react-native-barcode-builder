@@ -1,12 +1,10 @@
-import React, {PropTypes, PureComponent} from 'react';
-import {View, StyleSheet, ART} from 'react-native';
+import React, { PureComponent } from 'react';
+import { View, StyleSheet, ART } from 'react-native';
+import PropTypes from 'prop-types';
 
 import barcodes from 'jsbarcode/src/barcodes';
 
-const {
-  Surface,
-  Shape,
-} = ART;
+const { Surface, Shape } = ART;
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -86,14 +84,24 @@ export default class Barcode extends PureComponent {
       if (binary[b] === '1') {
         barWidth++;
       } else if (barWidth > 0) {
-        rects[rects.length] = this.drawRect(x - options.width * barWidth, yFrom, options.width * barWidth, options.height);
+        rects[rects.length] = this.drawRect(
+          x - options.width * barWidth,
+          yFrom,
+          options.width * barWidth,
+          options.height
+        );
         barWidth = 0;
       }
     }
 
     // Last draw is needed since the barcode ends with 1
     if (barWidth > 0) {
-      rects[rects.length] = this.drawRect(x - options.width * (barWidth - 1), yFrom, options.width * barWidth, options.height);
+      rects[rects.length] = this.drawRect(
+        x - options.width * (barWidth - 1),
+        yFrom,
+        options.width * barWidth,
+        options.height
+      );
     }
 
     return rects;
@@ -120,14 +128,12 @@ export default class Barcode extends PureComponent {
 
     // If the input is not valid for the encoder, throw error.
     if (!encoder.valid()) {
-
       if (this.props.onError) {
         this.props.onError(new Error('Invalid barcode for selected format.'));
-        return
+        return;
       } else {
-        throw new Error('Invalid barcode for selected format.')
+        throw new Error('Invalid barcode for selected format.');
       }
-
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
@@ -143,7 +149,7 @@ export default class Barcode extends PureComponent {
   render() {
     this.update();
     const backgroundStyle = {
-      backgroundColor: this.props.background,
+      backgroundColor: this.props.background
     };
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
@@ -158,6 +164,6 @@ export default class Barcode extends PureComponent {
 const styles = StyleSheet.create({
   svgContainer: {
     alignItems: 'center',
-    padding: 10,
+    padding: 10
   }
 });
