@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/wonsikin/react-native-barcode-builder.git"
   },
-  "license": "MIT",
+  "license": "Apache 2.0",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./"
