@@ -124,7 +124,19 @@ export default class Barcode extends PureComponent {
     // Ensure that text is a string
     text = '' + text;
 
-    var encoder = new Encoder(text, options);
+    var encoder;
+
+    try {
+      encoder = new Encoder(text, options);
+    } catch (error) {
+      // If the encoder could not be instantiated, throw error.
+      if (this.props.onError)  {
+        this.props.onError(new Error('Invalid barcode format.'));
+        return;
+      } else {
+        throw new Error('Invalid barcode format.');
+      }
+    }
 
     // If the input is not valid for the encoder, throw error.
     if (!encoder.valid()) {
