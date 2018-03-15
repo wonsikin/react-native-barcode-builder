@@ -168,6 +168,9 @@ export default class Barcode extends PureComponent {
         <Surface height={this.props.height} width={this.state.barCodeWidth}>
           <Shape d={this.state.bars} fill={this.props.lineColor} />
         </Surface>
+        if (typeof(this.props.text) != "undefined") {
+          <Text style={{width: this.state.barCodeWidth, textAlign: "center"}} >{this.props.text}</Text>
+        }
       </View>
     );
   }
