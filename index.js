@@ -124,8 +124,15 @@ export default class Barcode extends PureComponent {
 
   // encode() handles the Encoder call and builds the binary string to be rendered
   encode(text, Encoder, options) {
-    // Ensure that text is a string
-    text = '' + text;
+    // If text is not a non-empty string, throw error.
+    if (typeof text !== "string" || text.length === 0) {
+      if (this.props.onError) {
+        this.props.onError(new Error('Barcode value must be a non-empty string'));
+        return;
+      } else {
+        throw new Error('Barcode value must be a non-empty string');
+      }
+    }
 
     var encoder;
 
