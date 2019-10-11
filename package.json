@@ -15,7 +15,7 @@
   "author": "WonSikin <fnghwsj@gmail.com>",
   "dependencies": {
     "jsbarcode": "^3.8.0",
-    "@react-native-community/art": "^1.0.1",
+    "@react-native-community/art": "^1.0.1"
   },
   "peerDependencies": {
     "prop-types": "^15.5.0"
