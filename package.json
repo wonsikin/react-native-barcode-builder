@@ -11,7 +11,10 @@
   "scripts": {
     "lint": "eslint ./"
   },
-  "keywords": ["react-native", "barcode"],
+  "keywords": [
+    "react-native",
+    "barcode"
+  ],
   "author": "WonSikin <fnghwsj@gmail.com>",
   "dependencies": {
     "jsbarcode": "^3.8.0",
