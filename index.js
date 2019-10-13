@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import barcodes from 'jsbarcode/src/barcodes';
 
-import {Surface, Shape} from '@react-native-community/art';
+import { Surface, Shape } from '@react-native-community/art';
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -168,8 +168,8 @@ export default class Barcode extends PureComponent {
     };
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
-        <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          <Shape d={this.state.bars} fill={this.props.lineColor} />
+        <Surface height={this.props.height} width={this.state.barCodeWidth} visible={true}>
+          <Shape d={this.state.bars} fill={this.props.lineColor} visible={true} />
         </Surface>
         { typeof (this.props.text) !== 'undefined' &&
           <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
