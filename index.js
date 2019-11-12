@@ -129,9 +129,8 @@ export default class Barcode extends PureComponent {
       if (this.props.onError) {
         this.props.onError(new Error('Barcode value must be a non-empty string'));
         return;
-      } else {
-        throw new Error('Barcode value must be a non-empty string');
       }
+      throw new Error('Barcode value must be a non-empty string');
     }
 
     var encoder;
@@ -143,9 +142,8 @@ export default class Barcode extends PureComponent {
       if (this.props.onError)  {
         this.props.onError(new Error('Invalid barcode format.'));
         return;
-      } else {
-        throw new Error('Invalid barcode format.');
       }
+      throw new Error('Invalid barcode format.');
     }
 
     // If the input is not valid for the encoder, throw error.
@@ -153,9 +151,8 @@ export default class Barcode extends PureComponent {
       if (this.props.onError) {
         this.props.onError(new Error('Invalid barcode for selected format.'));
         return;
-      } else {
-        throw new Error('Invalid barcode for selected format.');
       }
+      throw new Error('Invalid barcode for selected format.');
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
