@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ART, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import Svg, {
+  Path,
+} from 'react-native-svg';
 
 import barcodes from 'jsbarcode/src/barcodes';
-
-const { Surface, Shape } = ART;
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -172,11 +173,18 @@ export default class Barcode extends PureComponent {
     };
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
-        <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          <Shape d={this.state.bars} fill={this.props.lineColor} />
-        </Surface>
-        { typeof(this.props.text) != 'undefined' &&
-          <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
+        <Svg
+          height={this.props.height}
+          width={this.state.barCodeWidth}
+          fill={this.props.lineColor}>
+          <Path
+            d={this.state.bars.join(' ')}
+          />
+        </Svg>
+        {typeof (this.props.text) != 'undefined' &&
+          <Text style={{ color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center' }} >
+            {this.props.text}
+          </Text>
         }
       </View>
     );

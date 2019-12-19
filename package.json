@@ -14,7 +14,8 @@
   "keywords": ["react-native", "barcode"],
   "author": "WonSikin <fnghwsj@gmail.com>",
   "dependencies": {
-    "jsbarcode": "^3.8.0"
+    "jsbarcode": "^3.8.0",
+    "react-native-svg": "^9.13.3"
   },
   "peerDependencies": {
     "prop-types": "^15.5.0"
