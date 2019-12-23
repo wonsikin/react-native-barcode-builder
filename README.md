@@ -7,17 +7,17 @@ React Native component to generate barcodes. Uses [JsBarcode](https://github.com
 
 This library uses [@react-native-community/react-native-svg](https://github.com/react-native-community/react-native-svg) instead of [@react-native-community/art](https://github.com/react-native-community/art)
 
-#### Step 1
+### Step 1
 
 Install `react-native-barcode-builder`:
 
     npm install react-native-barcode-builder --save
 
-or 
+or
 
     yarn add react-native-barcode-builder
   
-#### Step 2
+### Step 2
 
 Start using the component
 
