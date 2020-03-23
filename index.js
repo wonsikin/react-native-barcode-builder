@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ART, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import barcodes from 'jsbarcode/src/barcodes';
 
-const { Surface, Shape } = ART;
+import {Surface, Shape} from '@react-native-community/art';
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -48,9 +48,9 @@ export default class Barcode extends PureComponent {
     };
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.update(nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.update(this.props);
     }
   }
 
