@@ -12,7 +12,7 @@ export default class Barcode extends PureComponent {
     value: PropTypes.string,
     /* Select which barcode type to use */
     format: PropTypes.oneOf(Object.keys(barcodes)),
-    /* Overide the text that is diplayed */
+    /* Override the text that is displayed */
     text: PropTypes.string,
     /* The width option is the width of a single bar. */
     width: PropTypes.number,
@@ -125,7 +125,7 @@ export default class Barcode extends PureComponent {
   // encode() handles the Encoder call and builds the binary string to be rendered
   encode(text, Encoder, options) {
     // If text is not a non-empty string, throw error.
-    if (typeof text !== "string" || text.length === 0) {
+    if (typeof text !== 'string' || text.length === 0) {
       if (this.props.onError) {
         this.props.onError(new Error('Barcode value must be a non-empty string'));
         return;
@@ -155,8 +155,8 @@ export default class Barcode extends PureComponent {
       throw new Error('Invalid barcode for selected format.');
     }
 
-    // Make a request for the binary data (and other infromation) that should be rendered
-    // encoded stucture is {
+    // Make a request for the binary data (and other information) that should be rendered
+    // encoded structure is {
     //  text: 'xxxxx',
     //  data: '110100100001....'
     // }
@@ -175,7 +175,7 @@ export default class Barcode extends PureComponent {
         <Surface height={this.props.height} width={this.state.barCodeWidth}>
           <Shape d={this.state.bars} fill={this.props.lineColor} />
         </Surface>
-        { typeof(this.props.text) != 'undefined' &&
+        { typeof (this.props.text) !== 'undefined' &&
           <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
         }
       </View>
