@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ART, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import barcodes from 'jsbarcode/src/barcodes';
 
-const { Surface, Shape } = ART;
+import {Surface, Shape} from '@react-native-community/art';
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -48,9 +48,9 @@ export default class Barcode extends PureComponent {
     };
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.update(nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.update(this.props);
     }
   }
 
@@ -124,8 +124,14 @@ export default class Barcode extends PureComponent {
 
   // encode() handles the Encoder call and builds the binary string to be rendered
   encode(text, Encoder, options) {
-    // Ensure that text is a string
-    text = '' + text;
+    // If text is not a non-empty string, throw error.
+    if (typeof text !== "string" || text.length === 0) {
+      if (this.props.onError) {
+        this.props.onError(new Error('Barcode value must be a non-empty string'));
+        return;
+      }
+      throw new Error('Barcode value must be a non-empty string');
+    }
 
     var encoder;
 
@@ -136,9 +142,8 @@ export default class Barcode extends PureComponent {
       if (this.props.onError)  {
         this.props.onError(new Error('Invalid barcode format.'));
         return;
-      } else {
-        throw new Error('Invalid barcode format.');
       }
+      throw new Error('Invalid barcode format.');
     }
 
     // If the input is not valid for the encoder, throw error.
@@ -146,9 +151,8 @@ export default class Barcode extends PureComponent {
       if (this.props.onError) {
         this.props.onError(new Error('Invalid barcode for selected format.'));
         return;
-      } else {
-        throw new Error('Invalid barcode for selected format.');
       }
+      throw new Error('Invalid barcode for selected format.');
     }
 
     // Make a request for the binary data (and other infromation) that should be rendered
