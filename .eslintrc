@@ -4,17 +4,9 @@
         "es6": true,
         "node": true
     },
-
-    "ecmaFeatures": {
-        "modules": true,
-        "jsx": true,
-        "flow": true
-    },
-
     "plugins": [
         "react"
     ],
-
     // Map from global var to bool specifying if it can be redefined
     "globals": {
         "__DEV__": true,
