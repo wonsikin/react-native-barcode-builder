@@ -25,7 +25,9 @@ export default class Barcode extends PureComponent {
     /* Set the background of the barcode. */
     background: PropTypes.string,
     /* Handle error for invalid barcode of selected format */
-    onError: PropTypes.func
+    onError: PropTypes.func,
+    /* Transforms barcode to a vertical state  */
+    vertical: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -37,7 +39,8 @@ export default class Barcode extends PureComponent {
     lineColor: '#000000',
     textColor: '#000000',
     background: '#ffffff',
-    onError: undefined
+    onError: undefined,
+    vertical: false,
   };
 
   constructor(props) {
@@ -170,10 +173,13 @@ export default class Barcode extends PureComponent {
     const backgroundStyle = {
       backgroundColor: this.props.background
     };
+    const transform = this.props.vertical ? new ART.Transform().translate(this.props.height, 0).rotate(90) : null;
+    const height = this.props.vertical ? this.state.barCodeWidth : this.props.height;
+    const width = this.props.vertical ? this.props.height : this.state.barCodeWidth;
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
-        <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          <Shape d={this.state.bars} fill={this.props.lineColor} />
+        <Surface height={height} width={width}>
+          <Shape d={this.state.bars} fill={this.props.lineColor} transform={transform} />
         </Surface>
         { typeof (this.props.text) !== 'undefined' &&
           <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
