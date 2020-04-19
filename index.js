@@ -62,6 +62,19 @@ export default class Barcode extends PureComponent {
     this.update();
   }
 
+  // Calculate and provide the width required by a render of the barcode for the current input.
+  renderWidth() {
+    // TODO: store work done so that update() doesn't have to repeat.
+    const encoder = barcodes[this.props.format];
+    const encoded = this.encode(this.props.value, encoder, this.props);
+
+    if (encoded) {
+      this.state.barCodeWidth = encoded.data.length * this.props.width;
+      return this.state.barCodeWidth;
+    }
+    return 0;
+  }
+
   update() {
     const encoder = barcodes[this.props.format];
     const encoded = this.encode(this.props.value, encoder, this.props);
