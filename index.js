@@ -25,7 +25,9 @@ export default class Barcode extends PureComponent {
     /* Set the background of the barcode. */
     background: PropTypes.string,
     /* Handle error for invalid barcode of selected format */
-    onError: PropTypes.func
+    onError: PropTypes.func,
+    /* Maximum width of the barcode */
+    maxWidth: PropTypes.number
   };
 
   static defaultProps = {
@@ -37,7 +39,8 @@ export default class Barcode extends PureComponent {
     lineColor: '#000000',
     textColor: '#000000',
     background: '#ffffff',
-    onError: undefined
+    onError: undefined,
+    maxWidth: undefined
   };
 
   constructor(props) {
@@ -64,11 +67,20 @@ export default class Barcode extends PureComponent {
 
   update() {
     const encoder = barcodes[this.props.format];
-    const encoded = this.encode(this.props.value, encoder, this.props);
+    let encoded = this.encode(this.props.value, encoder, this.props);
+    let { width, maxWidth } = this.props;
+
+    if (maxWidth && encoded) {
+      const length = encoded.data.length * width;
+      if (length > maxWidth) {
+        width = maxWidth / encoded.data.length;
+        encoded = this.encode(this.props.value, encoder, {...this.props, width})
+      }
+    }
 
     if (encoded) {
-      this.state.bars = this.drawSvgBarCode(encoded, this.props);
-      this.state.barCodeWidth = encoded.data.length * this.props.width;
+      this.state.bars = this.drawSvgBarCode(encoded, {...this.props, width});
+      this.state.barCodeWidth = encoded.data.length * width;
     }
   }
 
