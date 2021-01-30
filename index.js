@@ -111,7 +111,7 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    return `M${x},${y}h${width}v${height}h-${width}z`;
+    return `M${x} ${y} h${width} v${height} h-${width} z`;
   }
 
   getTotalWidthOfEncodings(encodings) {
@@ -165,6 +165,24 @@ export default class Barcode extends PureComponent {
     return encoded;
   }
 
+  renderSvg() {
+    return (
+      <Svg height={this.props.height} width={this.state.barCodeWidth}>
+        {this.renderBars()}
+      </Svg>
+    );
+  }
+
+  renderBars() {
+    return this.state.bars.map(this.renderBar);
+  }
+
+  renderBar(bar) {
+    return (
+      <Path d={bar} stroke={this.props.lineColor} fill="none"/>
+    );
+  }
+
   render() {
     this.update();
     const backgroundStyle = {
@@ -172,9 +190,7 @@ export default class Barcode extends PureComponent {
     };
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
-        <Svg height={this.props.height} width={this.state.barCodeWidth}>
-          <Path d={this.state.bars} fill={this.props.lineColor} />
-        </Svg>
+        {this.renderSvg()}
         { typeof (this.props.text) !== 'undefined' &&
           <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
         }
