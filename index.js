@@ -46,6 +46,10 @@ export default class Barcode extends PureComponent {
       bars: [],
       barCodeWidth: 0
     };
+
+    this.renderSvg = this.renderSvg.bind(this);
+    this.renderBars = this.renderBars.bind(this);
+    this.renderBar = this.renderBar.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -80,7 +84,6 @@ export default class Barcode extends PureComponent {
     let barWidth = 0;
     let x = 0;
     let yFrom = 0;
-    // alert(JSON.stringify(options));
 
     for (let b = 0; b < binary.length; b++) {
       x = b * options.width;
@@ -177,9 +180,9 @@ export default class Barcode extends PureComponent {
     return this.state.bars.map(this.renderBar);
   }
 
-  renderBar(bar) {
+  renderBar(bar, index) {
     return (
-      <Path d={bar} stroke={this.props.lineColor} fill="none"/>
+      <Path key={index} d={bar} stroke="none" fill={this.props.lineColor}/>
     );
   }
 
