@@ -18,8 +18,8 @@
   ],
   "author": "WonSikin <fnghwsj@gmail.com>",
   "dependencies": {
-    "@react-native-community/art": "^1.2.0",
-    "jsbarcode": "^3.8.0"
+    "jsbarcode": "^3.8.0",
+    "react-native-svg": "^12.1.0"
   },
   "peerDependencies": {
     "prop-types": "^15.5.0"

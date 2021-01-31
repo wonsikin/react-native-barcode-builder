@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import barcodes from 'jsbarcode/src/barcodes';
 
-import {Surface, Shape} from '@react-native-community/art';
+import Svg, { Path } from 'react-native-svg';
 
 export default class Barcode extends PureComponent {
   static propTypes = {
@@ -46,6 +46,10 @@ export default class Barcode extends PureComponent {
       bars: [],
       barCodeWidth: 0
     };
+
+    this.renderSvg = this.renderSvg.bind(this);
+    this.renderBars = this.renderBars.bind(this);
+    this.renderBar = this.renderBar.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -80,7 +84,6 @@ export default class Barcode extends PureComponent {
     let barWidth = 0;
     let x = 0;
     let yFrom = 0;
-    // alert(JSON.stringify(options));
 
     for (let b = 0; b < binary.length; b++) {
       x = b * options.width;
@@ -111,7 +114,7 @@ export default class Barcode extends PureComponent {
   }
 
   drawRect(x, y, width, height) {
-    return `M${x},${y}h${width}v${height}h-${width}z`;
+    return `M${x} ${y} h${width} v${height} h-${width} z`;
   }
 
   getTotalWidthOfEncodings(encodings) {
@@ -165,6 +168,24 @@ export default class Barcode extends PureComponent {
     return encoded;
   }
 
+  renderSvg() {
+    return (
+      <Svg height={this.props.height} width={this.state.barCodeWidth}>
+        {this.renderBars()}
+      </Svg>
+    );
+  }
+
+  renderBars() {
+    return this.state.bars.map(this.renderBar);
+  }
+
+  renderBar(bar, index) {
+    return (
+      <Path key={index} d={bar} stroke="none" fill={this.props.lineColor}/>
+    );
+  }
+
   render() {
     this.update();
     const backgroundStyle = {
@@ -172,9 +193,7 @@ export default class Barcode extends PureComponent {
     };
     return (
       <View style={[styles.svgContainer, backgroundStyle]}>
-        <Surface height={this.props.height} width={this.state.barCodeWidth}>
-          <Shape d={this.state.bars} fill={this.props.lineColor} />
-        </Surface>
+        {this.renderSvg()}
         { typeof (this.props.text) !== 'undefined' &&
           <Text style={{color: this.props.textColor, width: this.state.barCodeWidth, textAlign: 'center'}} >{this.props.text}</Text>
         }
