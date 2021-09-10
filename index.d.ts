@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type Format = 'CODE128' | 'EAN' | 'CODE39' | 'ITF' | 'MSI' | 'Pharmacode' | 'Codabar'
+export type Format = 'CODE128' | 'EAN' | 'EAN13' | 'CODE39' | 'ITF' | 'MSI' | 'Pharmacode' | 'Codabar'
 
 export interface BarcodeProps {
     value: string
@@ -12,6 +12,7 @@ export interface BarcodeProps {
     textColor?: string
     background?: string
     onError?: (error: Error) => void
+    flat?: boolean
 }
 
 declare class Barcode extends React.PureComponent<BarcodeProps, any> {}
